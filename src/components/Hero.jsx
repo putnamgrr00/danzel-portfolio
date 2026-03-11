@@ -67,7 +67,7 @@ const Hero = () => {
           {/* Portrait + Floating Stats — parallax layer 2 & 3 */}
           <motion.div
             style={{ y: portraitY }}
-            className="relative order-2 lg:order-1 flex justify-center lg:justify-start"
+            className="relative order-2 lg:order-1 flex justify-center lg:justify-start min-w-0"
           >
             <div className="relative">
               {/* Navy glow behind portrait */}
@@ -78,7 +78,7 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-[280px] h-[373px] sm:w-[320px] sm:h-[427px] lg:w-[370px] lg:h-[493px] rounded-2xl overflow-hidden"
+                className="relative w-[280px] h-[373px] sm:w-[320px] sm:h-[427px] lg:w-[370px] lg:h-[493px] max-w-full rounded-2xl overflow-hidden"
               >
                 <img
                   src={PORTRAIT_URL}
@@ -99,7 +99,7 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: chipPositions[i].delay }}
-                    className={`absolute hidden lg:block pointer-events-auto ${floatClasses[i]}`}
+                    className={`absolute hidden xl:block pointer-events-auto ${floatClasses[i]}`}
                     style={{
                       top: chipPositions[i].top,
                       bottom: chipPositions[i].bottom,
@@ -187,7 +187,7 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="lg:hidden mt-8 flex flex-wrap gap-2"
+              className="xl:hidden mt-8 flex flex-wrap justify-center gap-2"
             >
               {heroStats.map((stat, i) => (
                 <div key={i} className="glass-card rounded-lg px-3 py-2">
