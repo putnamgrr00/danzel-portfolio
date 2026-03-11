@@ -117,7 +117,7 @@ const WorkBento = () => {
             <ArrowUpRight size={15} />
           </a>
           <a
-            href="https://drive.google.com/drive/folders/1DKI0iZyt4sNhMMldwLg59v8pf0lUwO4i?usp=sharing"
+            href="https://drive.google.com/file/d/1okB4sFveQucVgW9Hf5KKzWO2ciewXK5p/view"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-[14px] font-medium border border-[#3b7fd4] text-[#3b7fd4] hover:bg-[#3b7fd4]/10 transition-all duration-300"

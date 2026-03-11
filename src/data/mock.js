@@ -136,7 +136,7 @@ export const contactData = {
     { label: "Email", url: "mailto:danzel.henson.1@gmail.com", icon: "Mail" },
     { label: "LinkedIn", url: "https://www.linkedin.com/in/danzelhenson/", icon: "Linkedin" },
     { label: "Watch my intro", url: "https://youtu.be/p9IWM7fmNio", icon: "Play" },
-    { label: "Download CV", url: "https://drive.google.com/drive/folders/1DKI0iZyt4sNhMMldwLg59v8pf0lUwO4i?usp=sharing", icon: "Download" }
+    { label: "Download CV", url: "https://drive.google.com/file/d/1okB4sFveQucVgW9Hf5KKzWO2ciewXK5p/view", icon: "Download" }
   ],
   closingLine: "I usually reply within 24 hours. If I don\u2019t, assume I\u2019m either asleep or temporarily defeated by life."
 };
