@@ -1,5 +1,5 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import {
   MessageCircle,
   Mail,
@@ -10,13 +10,52 @@ import {
 } from "lucide-react";
 import { videoSectionData, contactData, footerData } from "../data/mock";
 
+// Copy email to clipboard, show toast, then open mailto
+function useEmailClick() {
+  const [showCopiedToast, setShowCopiedToast] = useState(false);
+
+  const handleEmailClick = (e, url) => {
+    if (!url || !url.startsWith("mailto:")) return;
+    e.preventDefault();
+    const email = url.replace(/^mailto:/i, "").trim();
+    try {
+      navigator.clipboard.writeText(email);
+    } catch (_) {}
+    setShowCopiedToast(true);
+    setTimeout(() => setShowCopiedToast(false), 2500);
+    window.location.href = url;
+  };
+
+  return [handleEmailClick, showCopiedToast];
+}
+
+function EmailCopiedToast({ visible }) {
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 12 }}
+          transition={{ duration: 0.2 }}
+          className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-xl glass-card border border-[#4f7cff]/20 text-[14px] text-[#f5f7fb] shadow-lg"
+        >
+          Email copied to clipboard
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 /* ========== VIDEO SECTION (A Quick Hello) ========== */
 export const VideoSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [handleEmailClick, showCopiedToast] = useEmailClick();
 
   return (
     <section className="pt-10 lg:pt-12 pb-16 lg:pb-20 relative" id="video">
+      <EmailCopiedToast visible={showCopiedToast} />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#4f7cff]/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -80,6 +119,7 @@ export const VideoSection = () => {
                   href={btn.url}
                   target={btn.url.startsWith("mailto:") ? "_self" : "_blank"}
                   rel="noopener noreferrer"
+                  onClick={(e) => btn.url.startsWith("mailto:") && handleEmailClick(e, btn.url)}
                   className="group glass-card rounded-xl px-5 py-3.5 flex items-center gap-3 hover:border-[#4f7cff]/20 transition-all duration-400 hover:-translate-y-0.5"
                 >
                   <div className="w-9 h-9 rounded-lg bg-[#4f7cff]/10 flex items-center justify-center group-hover:bg-[#4f7cff]/15 transition-colors duration-300">
@@ -110,9 +150,11 @@ const iconMap = {
 export const LetsTalk = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const [handleEmailClick, showCopiedToast] = useEmailClick();
 
   return (
     <section className="py-10 lg:py-12 relative" id="contact">
+      <EmailCopiedToast visible={showCopiedToast} />
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#4f7cff]/[0.03] rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -152,6 +194,7 @@ export const LetsTalk = () => {
                     href={btn.url}
                     target={btn.url.startsWith("mailto:") ? "_self" : "_blank"}
                     rel="noopener noreferrer"
+                    onClick={(e) => btn.url.startsWith("mailto:") && handleEmailClick(e, btn.url)}
                     className="group glass-card rounded-xl px-5 py-3.5 flex items-center gap-3 hover:border-[#4f7cff]/20 transition-all duration-400 hover:-translate-y-0.5"
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#4f7cff]/10 flex items-center justify-center group-hover:bg-[#4f7cff]/15 transition-colors duration-300">
@@ -174,6 +217,7 @@ export const LetsTalk = () => {
                     href={btn.url}
                     target={btn.url.startsWith("mailto:") ? "_self" : "_blank"}
                     rel="noopener noreferrer"
+                    onClick={(e) => btn.url.startsWith("mailto:") && handleEmailClick(e, btn.url)}
                     className="group glass-card rounded-xl px-5 py-3.5 flex items-center gap-3 hover:border-[#4f7cff]/20 transition-all duration-400 hover:-translate-y-0.5"
                   >
                     <div className="w-9 h-9 rounded-lg bg-[#4f7cff]/10 flex items-center justify-center group-hover:bg-[#4f7cff]/15 transition-colors duration-300">
@@ -204,8 +248,11 @@ export const LetsTalk = () => {
 
 /* ========== FOOTER ========== */
 export const Footer = () => {
+  const [handleEmailClick, showCopiedToast] = useEmailClick();
+
   return (
     <footer className="border-t border-white/[0.06] py-8">
+      <EmailCopiedToast visible={showCopiedToast} />
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
@@ -224,6 +271,7 @@ export const Footer = () => {
                 href={link.url}
                 target={link.url.startsWith("mailto:") ? "_self" : "_blank"}
                 rel="noopener noreferrer"
+                onClick={(e) => link.url.startsWith("mailto:") && handleEmailClick(e, link.url)}
                 className="text-[13px] text-[#5a6375] hover:text-[#4f7cff] transition-colors duration-300"
               >
                 {link.label}
