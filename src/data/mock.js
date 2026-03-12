@@ -1,7 +1,8 @@
 // Hero Section
 export const heroData = {
   label: "Marketing · Systems · Content · Operations",
-  headline: "You tell me what needs to happen.\nI figure out how.",
+  headlineLine1: "You tell me what needs to happen.",
+  headlineLine2: "I figure out how.",
   subtext: "I help founders and growing teams handle the overlap between content, systems, marketing, and the everyday work that keeps things moving when it starts getting messy.",
   locationLine: "Based in the Philippines · Working remotely worldwide",
   primaryCTA: {

@@ -67,8 +67,9 @@ const Hero = () => {
           {/* Portrait + Floating Stats — parallax layer 2 & 3 */}
           <motion.div
             style={{ y: portraitY }}
-            className="relative order-2 lg:order-1 flex justify-center lg:justify-start min-w-0"
+            className="relative order-1 flex justify-center lg:justify-start min-w-0"
           >
+            <div className="inline-block origin-center scale-[0.85] sm:scale-90 md:scale-95 lg:scale-100">
             <div className="relative">
               {/* Navy glow behind portrait */}
               <div className="absolute inset-0 -inset-x-12 -inset-y-12 bg-[#4f7cff]/[0.07] rounded-3xl blur-[80px] pointer-events-none" />
@@ -99,7 +100,7 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.7 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6, delay: chipPositions[i].delay }}
-                    className={`absolute hidden xl:block pointer-events-auto ${floatClasses[i]}`}
+                    className={`absolute block pointer-events-auto ${floatClasses[i]}`}
                     style={{
                       top: chipPositions[i].top,
                       bottom: chipPositions[i].bottom,
@@ -120,10 +121,11 @@ const Hero = () => {
                 ))}
               </motion.div>
             </div>
+            </div>
           </motion.div>
 
           {/* Text Stack */}
-          <div ref={textRef} className="order-1 lg:order-2">
+          <div ref={textRef} className="order-2 text-center lg:text-left">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -137,16 +139,24 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.25 }}
-              className="text-[38px] sm:text-[46px] lg:text-[54px] font-bold leading-[1.08] tracking-[-0.03em] text-[#f5f7fb] mb-4 whitespace-pre-line"
+              className="text-[38px] sm:text-[46px] lg:text-[54px] font-bold leading-[1.08] tracking-[-0.03em] text-[#f5f7fb] mb-4 max-w-xl mx-auto lg:mx-0 lg:max-w-[32rem]"
             >
-              {heroData.headline}
+              <span className="block">{heroData.headlineLine1}</span>
+              <motion.span
+                className="block hero-title-aura mt-0.5"
+                initial={{ opacity: 0 }}
+                animate={isInView ? { opacity: 1 } : {}}
+                transition={{ delay: 0.35, duration: 0.5 }}
+              >
+                {heroData.headlineLine2}
+              </motion.span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.45 }}
-              className="text-[15px] lg:text-[16px] text-[#a7b0c0] leading-[1.7] mb-6 max-w-[500px]"
+              className="text-[15px] lg:text-[16px] text-[#a7b0c0] leading-[1.7] mb-6 max-w-[500px] mx-auto lg:mx-0"
             >
               {heroData.subtext}
             </motion.p>
@@ -155,7 +165,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="flex flex-wrap items-center gap-3"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-3"
             >
               <button
                 onClick={() => scrollTo("#contact")}
@@ -181,21 +191,6 @@ const Hero = () => {
             >
               {heroData.locationLine}
             </motion.p>
-
-            {/* Mobile stat chips */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="xl:hidden mt-8 flex flex-wrap justify-center gap-2"
-            >
-              {heroStats.map((stat, i) => (
-                <div key={i} className="glass-card rounded-lg px-3 py-2">
-                  <span className="text-sm font-bold text-[#f5f7fb]">{stat.value}</span>
-                  <span className="text-[10px] text-[#a7b0c0] ml-1.5">{stat.label}</span>
-                </div>
-              ))}
-            </motion.div>
           </div>
         </div>
       </div>

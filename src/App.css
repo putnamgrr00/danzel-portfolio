@@ -95,3 +95,20 @@ a {
     animation: none;
   }
 }
+
+/* Hero title aura — subtle moving glow on second line */
+@keyframes aura-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(79, 124, 255, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(79, 124, 255, 0.25);
+  }
+}
+
+.hero-title-aura {
+  display: inline-block;
+  padding: 0.05em 0.2em;
+  border-radius: 6px;
+  animation: aura-pulse 4s ease-in-out infinite;
+}
