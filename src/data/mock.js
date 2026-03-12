@@ -131,7 +131,7 @@ export const videoSectionData = {
 // Final CTA — title, body, 5 buttons (contact + Watch intro + Download CV), reply note unchanged
 export const contactData = {
   title: "Got something in mind?",
-  body: "If any of this sounds like what you need, or even half of it, just reach out. No need for a perfectly organized brief. No pitch deck required. Just tell me what's going on and we'll figure out if it makes sense.\n\nI don't bite. I do occasionally overthink things, but that usually works in your favor.",
+  body: "If any of this sounds like what you need, or even half of it, just reach out. Just tell me what's going on and we'll figure out if it makes sense.\n\nI don't bite. I do occasionally overthink things, but that usually works in your favor.",
   buttons: [
     { label: "WhatsApp", url: "https://wa.link/immbpd", icon: "MessageCircle" },
     { label: "Email", url: "mailto:danzel.henson.1@gmail.com", icon: "Mail" },
